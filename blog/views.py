@@ -16,3 +16,12 @@ def post_list(request):
         'query': query,
     })
 
+
+def post_detail(request, pk):
+    # pk = "100"  # /blog/100/
+    # post = Post.objects.get(id=pk)
+    post = Post.objects.get(pk=pk)
+    return render(request, 'blog/post_detail.html', {
+        'post': post,
+    })
+
