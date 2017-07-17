@@ -17,5 +17,13 @@
     </li>
     {% endfor %}
     </ul>
+
+    {% for date in date_list %}
+        {% ifchanged %}
+            <h3>{{ date|date:"M" }}</h3>
+        {% endifchanged %}
+        {{ date }}<br/>
+    {% endfor %}
+
 {% endblock %}
 
