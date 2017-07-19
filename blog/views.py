@@ -52,3 +52,20 @@ def post_new(request):
 # post_new = CreateView.as_view(model=Post, form_class=PostForm, success_url='/weblog/')
 # post_new = CreateView.as_view(model=Post, form_class=PostForm)  # get_absolute_url을 활용
 
+
+def post_edit(request, pk):
+    post = Post.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save()
+            return redirect(post)
+    else:
+        # if request.method == 'GET':
+        form = PostForm(instance=post)
+
+    return render(request, 'blog/post_form.html', {
+        'form': form,
+    })
+
