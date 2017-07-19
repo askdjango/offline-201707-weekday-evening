@@ -41,13 +41,7 @@ def post_new(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            print('통과한 값들:', form.cleaned_data)
-#           post = Post(
-#               title=form.cleaned_data['title'],
-#               content=form.cleaned_data['content'],
-#               author=form.cleaned_data['author'])
-            post = Post(**form.cleaned_data)
-            post.save()
+            post = form.save()
             return redirect('blog:post_detail', post.id)
 
     return render(request, 'blog/post_form.html', {
