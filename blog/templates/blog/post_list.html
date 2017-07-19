@@ -13,7 +13,7 @@
     <ul>
     {% for post in post_list %}
     <li>
-        <a href="{% url "blog:post_detail" post.id %}">
+        <a href="{{ post.get_absolute_url }}">
         {# <a href="/weblog/{{ post.pk }}/"> #}
             {{ post.title }}
         </a>

@@ -39,7 +39,7 @@ def post_new(request):
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save()
-            return redirect('blog:post_detail', post.id)
+            return redirect(post)
     else:
     # if request.method == 'GET':
         form = PostForm()
@@ -50,4 +50,5 @@ def post_new(request):
 
 # from django.views.generic import CreateView
 # post_new = CreateView.as_view(model=Post, form_class=PostForm, success_url='/weblog/')
+# post_new = CreateView.as_view(model=Post, form_class=PostForm)  # get_absolute_url을 활용
 
