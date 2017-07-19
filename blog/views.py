@@ -1,7 +1,8 @@
 import datetime
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Post
+from .forms import PostForm
 
 
 def post_list(request):
@@ -30,5 +31,26 @@ def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
     return render(request, 'blog/post_detail.html', {
         'post': post,
+    })
+
+
+def post_new(request):
+    if request.method == 'GET':
+        form = PostForm()
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            print('통과한 값들:', form.cleaned_data)
+#           post = Post(
+#               title=form.cleaned_data['title'],
+#               content=form.cleaned_data['content'],
+#               author=form.cleaned_data['author'])
+            post = Post(**form.cleaned_data)
+            post.save()
+            return redirect('blog:post_detail', post.id)
+
+    return render(request, 'blog/post_form.html', {
+        'form': form,
     })
 
