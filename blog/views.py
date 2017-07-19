@@ -69,3 +69,13 @@ def post_edit(request, pk):
         'form': form,
     })
 
+
+def post_delete(request, pk):
+    post = Post.objects.get(pk=pk)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('blog:post_list')
+    return render(request, 'blog/post_confirm_delete.html', {
+        'post': post,
+    })
+

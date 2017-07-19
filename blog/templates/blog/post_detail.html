@@ -9,6 +9,7 @@
 
     <a href="{% url "blog:post_list" %}">목록</a>
     <a href="{% url "blog:post_edit" post.id %}">수정</a>
+    <a href="{% url "blog:post_delete" post.id %}">삭제</a>
     {# <a href="/weblog/">목록</a> #}
 {% endblock %}
 
