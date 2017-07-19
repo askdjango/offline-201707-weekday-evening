@@ -35,14 +35,14 @@ def post_detail(request, pk):
 
 
 def post_new(request):
-    if request.method == 'GET':
-        form = PostForm()
-
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save()
             return redirect('blog:post_detail', post.id)
+    else:
+    # if request.method == 'GET':
+        form = PostForm()
 
     return render(request, 'blog/post_form.html', {
         'form': form,
