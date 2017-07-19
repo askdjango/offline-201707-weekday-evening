@@ -11,7 +11,8 @@
     <ul>
     {% for post in post_list %}
     <li>
-        <a href="/blog/{{ post.pk }}/">
+        <a href="{% url "post_detail" post.id %}">
+        {# <a href="/weblog/{{ post.pk }}/"> #}
             {{ post.title }}
         </a>
         <small>({{ post.created_at|timesince }} 전에)</small>
