@@ -14,6 +14,7 @@
         <a href="/blog/{{ post.pk }}/">
             {{ post.title }}
         </a>
+        <small>({{ post.created_at|timesince }} 전에)</small>
     </li>
     {% endfor %}
     </ul>
