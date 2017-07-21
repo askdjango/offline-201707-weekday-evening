@@ -14,7 +14,7 @@ class Post(models.Model):
             validators=[min_length_3],
             help_text='제목은 간결하게!!')
     content = models.TextField()
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to='blog/post/%Y/%m/%d/%H')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
