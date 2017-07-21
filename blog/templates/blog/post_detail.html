@@ -3,6 +3,10 @@
 {% block content %}
     <h3>{{ post.title }} <small>by {{ post.author }}</small></h3>
 
+    {% if post.photo %}
+        <img src="{{ post.photo.url }}" style="width: 100px;" />
+    {% endif %}
+
     {{ post.content|linebreaks }}
 
     <hr/>
