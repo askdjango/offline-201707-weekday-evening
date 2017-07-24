@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 
@@ -16,6 +17,7 @@ def signup(request):
     })
 
 
+@login_required
 def profile(request):
     # request.user
     return render(request, 'accounts/profile.html')

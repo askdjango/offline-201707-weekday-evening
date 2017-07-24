@@ -1,4 +1,5 @@
 import datetime
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import redirect, render
 from .models import Post
@@ -34,6 +35,7 @@ def post_detail(request, pk):
     })
 
 
+@login_required
 def post_new(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -53,6 +55,7 @@ def post_new(request):
 # post_new = CreateView.as_view(model=Post, form_class=PostForm)  # get_absolute_url을 활용
 
 
+@login_required
 def post_edit(request, pk):
     post = Post.objects.get(pk=pk)
 
