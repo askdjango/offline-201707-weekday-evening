@@ -35,3 +35,10 @@ class LoginForm(AuthenticationForm):
             raise forms.ValidationError('땡~!')
         return answer
 
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        # fields = '__all__'
+        fields = ['phone', 'addr']
+
