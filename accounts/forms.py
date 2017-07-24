@@ -1,10 +1,23 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from .models import Profile
 
 
 class SignupForm(UserCreationForm):
+    phone = forms.CharField()
+    addr = forms.CharField()
+
     class Meta(UserCreationForm.Meta):
         fields = UserCreationForm.Meta.fields + ('email',)
+
+    def save(self):
+        user = super().save()
+
+        phone = self.cleaned_data['phone']
+        addr = self.cleaned_data['addr']
+        profile = Profile.objects.create(user=user, phone=phone, addr=addr)
+
+        return user
 
 
 '''

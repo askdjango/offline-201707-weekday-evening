@@ -3,6 +3,20 @@
 {% block content %}
     <h3>{{ user }}'s Profile</h3>
 
-    {{ user.date_joined }}
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th>phone</th>
+            <td>{{ user.profile.phone }}</td>
+        </tr>
+        <tr>
+            <th>addr</th>
+            <td>{{ user.profile.addr }}</td>
+        </tr>
+        <tr>
+            <th>date_joined</th>
+            <td>{{ user.date_joined }}</td>
+        </tr>
+    </table>
+
 {% endblock %}
 
