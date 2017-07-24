@@ -3,31 +3,37 @@
 {% block content %}
     <p>안녕하세요. 여러분의 파이썬/장고 페이스메이커가 되겠습니다. ;)</p>
 
-    <form action="" method="get">
-        <input type="text" name="query" value="{{ query }}" />
-        <input type="submit" value="검색" />
-    </form>
+    <p>
+        <a href="{% url "blog:post_new" %}" class="btn btn-primary pull-right">New Post</a>
 
-    <a href="{% url "blog:post_new" %}">New Post</a>
+        <form action="" method="get">
+            <input type="text" name="query" value="{{ query }}" />
+            <input type="submit" value="검색" />
+        </form>
+    </p>
 
-    <ul>
-    {% for post in post_list %}
-    <li>
-        <a href="{{ post.get_absolute_url }}">
-        {# <a href="/weblog/{{ post.pk }}/"> #}
-            {{ post.title }}
-        </a>
-        <small>({{ post.created_at|timesince }} 전에)</small>
-    </li>
-    {% endfor %}
-    </ul>
-
-    {% for date in date_list %}
-        {% ifchanged %}
-            <h3>{{ date|date:"M" }}</h3>
-        {% endifchanged %}
-        {{ date }}<br/>
-    {% endfor %}
-
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>일시</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in post_list %}
+            <tr>
+                <td>
+                    <a href="{{ post.get_absolute_url }}">
+                    {# <a href="/weblog/{{ post.pk }}/"> #}
+                        {{ post.title }}
+                    </a>
+                </td>
+                <td>
+                    {{ post.created_at|timesince }} 전에
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
 

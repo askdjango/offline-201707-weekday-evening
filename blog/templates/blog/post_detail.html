@@ -1,19 +1,22 @@
 {% extends "blog/layout.html" %}
 
 {% block content %}
-    <h3>{{ post.title }} <small>by {{ post.author }}</small></h3>
-
-    {% if post.photo %}
-        <img src="{{ post.photo.url }}" style="width: 100px;" />
-    {% endif %}
-
-    {{ post.content|linebreaks }}
-
-    <hr/>
-
-    <a href="{% url "blog:post_list" %}">목록</a>
-    <a href="{% url "blog:post_edit" post.id %}">수정</a>
-    <a href="{% url "blog:post_delete" post.id %}">삭제</a>
-    {# <a href="/weblog/">목록</a> #}
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4>{{ post.title }} <small>by {{ post.author }}</small></h4>
+        </div>
+        <div class="panel-body">
+            {% if post.photo %}
+            <img src="{{ post.photo.url }}" style="width: 100px;" />
+            {% endif %}
+            {{ post.content|linebreaks }}
+        </div>
+        <div class="panel-footer">
+            <a href="{% url "blog:post_list" %}" class="btn btn-primary">목록</a>
+            <a href="{% url "blog:post_edit" post.id %}" class="btn btn-default">수정</a>
+            <a href="{% url "blog:post_delete" post.id %}" class="btn btn-default">삭제</a>
+            {# <a href="/weblog/">목록</a> #}
+        </div>
+    </div>
 {% endblock %}
 
