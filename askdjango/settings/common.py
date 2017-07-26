@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from os.path import abspath, dirname
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = dirname(dirname(dirname(abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -46,7 +47,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.naver',
     'bootstrap3',
     'debug_toolbar',
-    'storages',
     'accounts',
     'blog',
     'dojo',
@@ -138,9 +138,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATICFILES_STORAGE = 'askdjango.storages.StaticS3Boto3Storage'
-DEFAULT_FILE_STORAGE = 'askdjango.storages.MediaS3Boto3Storage'
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'askdjango', 'static'),
@@ -151,12 +148,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 INTERNAL_IPS = ['127.0.0.1']
-
-
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_ACCESS_KEY = ''
-AWS_STORAGE_BUCKET_NAME = 'askdjango-weekday-evening'
-AWS_S3_REGION_NAME = 'ap-northeast-2'
 
 
 SITE_ID = 1
