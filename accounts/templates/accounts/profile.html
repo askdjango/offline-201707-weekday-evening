@@ -3,6 +3,10 @@
 {% block content %}
     <h3>{{ user }}'s Profile</h3>
 
+    <p>
+        <img src="{{ user.socialaccount_set.all.first.get_avatar_url }}" style="max-width: 100px;" />
+    </p>
+
     <table class="table table-hover table-bordered">
         <tr>
             <th>phone</th>
